@@ -87,11 +87,11 @@ Relatório HTML completo: `reports/mutation/mutation.html`.
 
 ## 5) Conclusão
 
-Os resultados confirmam que o teste de mutação é um indicador mais robusto do que a simples cobertura de linhas: saímos de 73,71% para 96,71% ao fortalecer oráculos (mensagens de erro), exercitar bordas e separar caminhos lógicos relevantes. O ganho veio menos de “mais testes” e mais de “testes melhores”, com assertivas específicas e casos de contorno que expõem mutações sutis (LogicalOperator, Equality, StringLiteral). Os 7 sobreviventes remanescentes tendem a ser equivalentes ou exigiriam mudanças de design para se tornarem observáveis. Perseguir >98% sem exclusões é viável, mas com trade-offs: maior acoplamento teste–implementação, asserts frágeis ou alteração de API.
+Não foi possível alcançar 98% de mutation score nesta entrega. Apesar do salto de 73,71% para 96,71% com oráculos mais fortes (mensagens), casos de borda e cobertura de caminhos lógicos, os 7 sobreviventes restantes tendem a ser mutantes equivalentes ou que só seriam observáveis com mudanças de design (ex.: ajustar a lógica do fatorial para diferenciar 0 e 1, ou alterar o contrato de `clamp` na igualdade). Forçar a morte desses mutantes sem exclusões implicaria riscos de acoplamento teste–implementação e asserts frágeis, contrariando a manutenção e a clareza dos requisitos originais.
 
-Como práticas recomendadas, mantemos: mensagens de erro estáveis e verificadas; contratos explícitos para entradas inválidas; cobertura dos limites (igualdade em clamp, 0/1 no fatorial); e tolerância em cálculos de ponto flutuante. No processo, vale institucionalizar o Stryker no pipeline (CI) para evitar regressões e monitorar continuamente a eficácia da suíte. Próximos passos: revisar cada sobrevivente, decidir se é equivalente (documentar/excluir) ou se compensa um pequeno refactor para torná-lo observável; complementar a análise com métricas de branch coverage.
+Optamos por priorizar testes “melhores” em vez de “mais” testes: assertivas específicas, limites explícitos e tratamento consistente de entradas inválidas. Considerando a política de não usar exclusões, manter o design e a API intactos e evitar acoplamento frágil, o patamar de 96,71% representa o equilíbrio adequado entre eficácia, simplicidade e manutenção.
 
-Em suma, a suíte agora testa o que importa e falha quando deve; o mutation score reflete essa maturidade e passa a servir como guarda-corpo de qualidade para as próximas evoluções do projeto.
+Em síntese, o conjunto de testes agora exerce o que importa e falha quando deve; os 96,71% refletem maturidade e oferecem um guarda‑corpo robusto de qualidade. Avançar além disso depende menos de quantidade e mais de decisões de design — que devem ser pesadas contra simplicidade e manutenção do sistema.
 
 
 
