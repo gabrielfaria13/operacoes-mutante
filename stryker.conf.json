@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.stryker-mutator.io/schema/stryker-schema.json",
+  "mutator": { "name": "javascript" },
+  "packageManager": "npm",
+  "testRunner": "jest",
+  "coverageAnalysis": "off",
+  "reporters": ["clear-text", "html"],
+  "jest": {
+    "projectType": "custom"
+  },
+  "files": [
+    "src/**/*.js",
+    "test/**/*.js"
+  ],
+  "mutate": [
+    "src/**/*.js"
+  ]
+}
